@@ -1,120 +1,820 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kit Maestro de Planillas — Control Total de tu Negocio en 15 Minutos al Día — Área de miembros</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>:root{--ac:#f9485d;--acd:color-mix(in srgb,var(--ac) 72%,#000);--acs:color-mix(in srgb,var(--ac) 12%,#fff);--ink:#16181d;--ink2:#444b57;--mut:#8b94a3;--bg:#f6f7f9;--card:#fff;--line:#e9edf2;--rad:16px}
-*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}
-body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;font-size:16px}
-a{color:inherit}
-.app{display:flex;min-height:100dvh}
-.side{width:300px;flex-shrink:0;background:var(--card);border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100dvh;overflow-y:auto}
-.side-head{padding:22px 22px 16px;border-bottom:1px solid var(--line)}
-.side-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:-.01em;line-height:1.2}
-.side-logo .dot{width:30px;height:30px;flex-shrink:0;border-radius:9px;background:var(--ac);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;box-shadow:0 5px 14px color-mix(in srgb,var(--ac) 42%,transparent)}
-.side-tag{font-size:10.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--mut);margin-top:11px}
-.prog{padding:15px 22px;border-bottom:1px solid var(--line)}
-.prog-bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden}
-.prog-fill{height:100%;width:0;background:var(--ac);border-radius:99px;transition:width .45s cubic-bezier(.4,0,.2,1)}
-.prog-txt{font-size:12px;color:var(--mut);margin-top:8px;font-weight:600}
-.mods{padding:12px;flex:1}
-.mod-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:11px 12px;border-radius:11px;cursor:pointer;background:none;border:0;font:inherit;color:var(--ink2);transition:background .15s}
-.mod-item:hover{background:var(--bg)}.mod-item.active{background:var(--acs);color:var(--acd)}
-.mod-ic{width:30px;height:30px;flex-shrink:0;border-radius:9px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--mut);transition:background .15s,color .15s}
-.mod-ic svg{width:17px;height:17px}
-.mod-item.active .mod-ic{background:var(--ac);color:#fff}.mod-item.done .mod-ic{background:var(--acs);color:var(--acd)}
-.mod-t{font-size:13.5px;font-weight:600;line-height:1.3;flex:1;min-width:0}
-.mod-ck{flex-shrink:0;color:var(--ac);display:flex}.mod-ck svg{width:16px;height:16px}
-.main{flex:1;min-width:0;display:flex;flex-direction:column}
-/* MOBILE: banner colorido (cor da oferta) no topo, estilo Festaria */
-.topbar{position:sticky;top:0;z-index:20;display:none;align-items:center;gap:11px;padding:13px 16px;background:linear-gradient(120deg,var(--ac),var(--acd));color:#fff;box-shadow:0 3px 16px color-mix(in srgb,var(--ac) 34%,transparent)}
-.menu-btn{width:38px;height:38px;flex-shrink:0;border-radius:11px;border:0;background:rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer}
-.topbar-t{flex:1;min-width:0;font-weight:800;font-size:15px;letter-spacing:-.01em;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pdf{flex-shrink:0;background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:10px;padding:8px 13px;font-weight:700;font-size:12px;cursor:pointer}
-.content{flex:1;width:100%;max-width:820px;margin:0 auto;padding:40px 32px 90px}
-.hero .eyebrow{display:inline-block;background:var(--acs);color:var(--acd);font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:6px 12px;border-radius:99px}
-.hero h1{font-size:32px;font-weight:800;letter-spacing:-.025em;margin:16px 0 10px;line-height:1.12}
-.hero .lead{color:var(--ink2);font-size:16px;max-width:62ch;line-height:1.7}.hero .lead p{margin:8px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-.mcard{display:flex;flex-direction:column;text-align:left;border-radius:var(--rad);border:1px solid var(--line);background:var(--card);cursor:pointer;font:inherit;overflow:hidden;transition:transform .14s,box-shadow .22s,border-color .2s}
-.mcard:hover{border-color:color-mix(in srgb,var(--ac) 45%,var(--line));box-shadow:0 14px 34px rgba(18,24,40,.11);transform:translateY(-3px)}
-.mcard:active{transform:scale(.99)}
-.cover{position:relative;aspect-ratio:16/9;overflow:hidden}
-.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 130% at 82% 12%,rgba(255,255,255,.24),transparent 56%)}
-.cover-ic{position:absolute;top:50%;left:50%;transform:translate(-50%,-56%);width:56px;height:56px;color:#fff;opacity:.95;z-index:1}
-.cover-ic svg{width:100%;height:100%}
-.cover-n{position:absolute;top:11px;left:13px;z-index:2;font-size:11.5px;font-weight:800;color:#fff;background:rgba(0,0,0,.2);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:3px 9px;border-radius:99px}
-.cover-done{position:absolute;top:9px;right:11px;z-index:2;width:24px;height:24px;border-radius:99px;background:#fff;color:var(--acd);display:flex;align-items:center;justify-content:center}
-.cover-done svg{width:15px;height:15px}
-.mcard-b{padding:14px 16px 16px}
-.mcard-t{font-weight:700;font-size:15px;line-height:1.3;color:var(--ink)}
-.mcard-s{font-size:12.5px;color:var(--mut);margin-top:4px;font-weight:600}
-.m-eyebrow{font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ac)}
-.m-title{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:8px 0 22px;line-height:1.15}
-.prose{color:var(--ink2);font-size:16px;line-height:1.75}
-.prose h1,.prose h2{font-size:21px;color:var(--ink);font-weight:800;margin:30px 0 12px;letter-spacing:-.01em}
-.prose h3{font-size:17px;color:var(--ink);font-weight:700;margin:22px 0 8px}
-.prose h4{font-size:13px;color:var(--ink2);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin:16px 0 6px}
-.prose p{margin:12px 0}.prose ul,.prose ol{padding-left:22px;margin:12px 0}.prose li{margin:7px 0}.prose li::marker{color:var(--ac);font-weight:700}
-.prose strong{color:var(--ink);font-weight:700}.prose a{color:var(--acd);font-weight:600;text-decoration:underline}
-.prose code{background:var(--acs);color:var(--acd);padding:2px 6px;border-radius:6px;font-family:ui-monospace,Menlo,monospace;font-size:13.5px}
-.prose pre{background:#0f172a;color:#e2e8f0;padding:16px 18px;border-radius:12px;overflow:auto;margin:14px 0;font-size:13px;line-height:1.6}.prose pre code{background:none;color:inherit;padding:0}
-.prose blockquote{border-left:3px solid var(--ac);background:var(--bg);padding:8px 16px;border-radius:0 10px 10px 0;margin:14px 0}
-.prose table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.prose th,.prose td{border-bottom:1px solid var(--line);padding:9px 13px;text-align:left}.prose th{background:var(--bg);font-weight:700;color:var(--ink)}
-.navrow{display:flex;align-items:center;gap:12px;margin-top:38px;padding-top:24px;border-top:1px solid var(--line)}
-.btn{border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:12px;padding:11px 18px;font-weight:700;font-size:14px;cursor:pointer;transition:background .15s,filter .15s}
-.btn:hover{background:var(--bg)}.btn-pri{background:var(--ac);color:#fff;border-color:transparent;margin-left:auto}.btn-pri:hover{filter:brightness(1.07);background:var(--ac)}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:30}
-.bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:35;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
-.bnav-row{display:grid;grid-template-columns:repeat(3,1fr);max-width:480px;margin:0 auto}
-.bnav-i{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 8px;border:0;background:none;font:inherit;color:var(--mut);font-size:10.5px;font-weight:600;cursor:pointer;transition:color .15s}
-.bnav-i svg{width:23px;height:23px}.bnav-i.active{color:var(--ac)}
-@media(max-width:860px){.side{position:fixed;left:0;top:0;z-index:40;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);box-shadow:0 0 50px rgba(0,0,0,.25)}.app.open .side{transform:none}.app.open .overlay{display:block}.topbar{display:flex}.bnav{display:block}.content{padding:24px 18px 104px}.grid{grid-template-columns:1fr}.hero h1{font-size:26px}}
-.ladder{display:flex;flex-direction:column;gap:12px;margin:22px 0}
-.lad-tier{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:var(--card);position:relative}
-.lad-tier.core{border-color:var(--ac);box-shadow:0 8px 26px color-mix(in srgb,var(--ac) 20%,transparent)}
-.lad-badge{flex-shrink:0;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:var(--ac);padding:5px 10px;border-radius:99px;white-space:nowrap}
-.lad-badge.up{background:#2C5A94}.lad-badge.oto{background:#8A4FBF}.lad-badge.bump{background:#F59E0B;color:#3a2a00}.lad-badge.down{background:#8A99AC}
-.lad-b{flex:1;min-width:0}
-.lad-t{font-weight:800;font-size:15px;color:var(--ink);letter-spacing:-.01em}
-.lad-d{font-size:12.5px;color:var(--ink2);margin-top:3px;line-height:1.5}
-.lad-price{flex-shrink:0;font-weight:800;font-size:16px;color:var(--acd);font-variant-numeric:tabular-nums}
-.lad-price s{color:var(--mut);font-weight:600;font-size:.78em;margin-right:5px}
-.lad-sub{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);margin:20px 0 6px}
-.lad-note{font-size:13px;color:var(--ink2);background:var(--bg);border-radius:12px;padding:14px 16px;margin-top:16px;line-height:1.6}
-@media print{.side,.topbar,.navrow,.overlay,.bnav{display:none!important}.content{max-width:none;padding:0}}</style></head>
-<body>
-<div class="app" id="app">
-<div class="overlay" onclick="drawer(false)"></div>
-<aside class="side">
-<div class="side-head"><div class="side-logo"><span class="dot">&#9733;</span><span>Kit Maestro de Planillas — Control Total de tu Negocio en 15 Minutos al Día</span></div><div class="side-tag">Área de miembros</div></div>
-<div class="prog"><div class="prog-bar"><div class="prog-fill" id="pf"></div></div><div class="prog-txt" id="pt"></div></div>
-<nav class="mods" id="mods"></nav>
-</aside>
-<div class="main">
-<div class="topbar"><button class="menu-btn" onclick="drawer(true)" aria-label="Menu">&#9776;</button><span class="topbar-t" id="tbt">Kit Maestro de Planillas — Control Total de tu Negocio en 15 Minutos al Día</span><button class="pdf" onclick="window.print()">PDF</button></div>
-<main class="content" id="content"></main>
-<nav class="bnav"><div class="bnav-row" id="bnav"></div></nav>
-</div>
-</div>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kit Maestro de Planillas — Área de miembros</title>
+<style>
+:root{--gr:#217346;--grd:#1D6F42;--grl:#33C481;--ink:#1f2a24;--ink2:#51615a;--mut:#8a988f;--line:#dfe9e3;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--ink);
+ background:#eef3f0;
+ background-image:linear-gradient(#0000,#0000),
+   linear-gradient(90deg,rgba(33,115,70,.05) 1px,transparent 1px),
+   linear-gradient(rgba(33,115,70,.05) 1px,transparent 1px);
+ background-size:100% 100%,26px 26px,26px 26px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.top{background:linear-gradient(120deg,var(--grd),var(--gr));color:#fff;padding:26px 22px 22px}
+.top-in{max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:14px;letter-spacing:.02em}
+.brand .x{width:34px;height:34px;border-radius:9px;background:#fff;color:var(--grd);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;box-shadow:0 6px 16px rgba(0,0,0,.2)}
+.top h1{font-size:30px;font-weight:900;letter-spacing:-.02em;margin:16px 0 6px;line-height:1.12}
+.top p{opacity:.92;font-size:14.5px;max-width:62ch;line-height:1.55}
+.badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:99px;padding:5px 13px;font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:11px 0}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 22px;display:flex;gap:9px;overflow-x:auto}
+.chip{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 13px;font-size:13px;font-weight:700;color:var(--ink2);transition:.15s}
+.chip:hover{border-color:var(--gr);color:var(--grd)}
+.chip-n{width:20px;height:20px;border-radius:50%;background:var(--gr);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.chip-c{color:var(--mut);font-weight:800;font-size:11.5px}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 22px 90px}
+.cat{margin-top:30px;scroll-margin-top:64px}
+.cover{border-radius:18px;overflow:hidden;box-shadow:0 12px 30px rgba(18,40,30,.14);line-height:0}
+.cover img{width:100%;display:block}
+.pl-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:16px}
+.pl{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gr);border-radius:14px;padding:15px 16px;transition:.16s}
+.pl:hover{box-shadow:0 12px 28px rgba(18,40,30,.1);transform:translateY(-2px)}
+.pl-x{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:var(--gr);color:#fff;font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 13px rgba(33,115,70,.35)}
+.pl-b{flex:1;min-width:0}
+.pl-t{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pl-t b{font-size:14.5px;letter-spacing:-.01em}
+.pl-n{color:var(--mut);font-size:11.5px;font-weight:700}
+.pl-cols{color:var(--ink2);font-size:12.3px;margin-top:5px;line-height:1.5}
+.pl-auto{color:var(--grd);font-size:11.8px;margin-top:7px;background:#eef7f1;border-radius:8px;padding:6px 9px;line-height:1.45}
+.pl-acts{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
+.bt{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:9px;padding:8px 12px;font:inherit;font-size:12.5px;font-weight:800;cursor:pointer;white-space:nowrap;transition:.14s;text-align:center}
+.bt:hover{filter:brightness(.98)}
+.bt-dl{background:var(--gr);color:#fff;border-color:transparent}.bt-dl:hover{background:var(--grd)}
+.bt-xl{border-color:#cfe5d8;color:var(--grd)}
+.bt-gs{border-color:#cfe5d8;color:var(--grd)}
+.foot{max-width:1080px;margin:0 auto;padding:10px 22px 60px;color:var(--mut);font-size:12.5px;text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--grd);color:#fff;
+ padding:12px 18px;border-radius:12px;font-size:13.5px;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.25);opacity:0;
+ transition:.25s;z-index:50;pointer-events:none;max-width:90vw}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:820px){.pl-grid{grid-template-columns:1fr}.pl{flex-wrap:wrap}.pl-acts{flex-direction:row;width:100%}.pl-acts .bt{flex:1}.top h1{font-size:24px}}
+</style></head><body>
+<header class="top"><div class="top-in">
+  <div class="brand"><span class="x">X</span> ÁREA DE MIEMBROS</div>
+  <div style="margin-top:14px"><span class="badge">Tu acceso está desbloqueado</span></div>
+  <h1>Kit Maestro de Planillas</h1>
+  <p><b>60 planillas</b> en 6 categorías, listas para usar. Cada una abre en <b>Excel</b> o <b>Google Sheets</b> — solo ingresa tus números y las fórmulas calculan solas.</p>
+</div></header>
+<nav class="nav"><div class="nav-in"><a class="chip" href="#cat1"><span class="chip-n">1</span>Finanzas<span class="chip-c">12</span></a><a class="chip" href="#cat2"><span class="chip-n">2</span>Ventas<span class="chip-c">12</span></a><a class="chip" href="#cat3"><span class="chip-n">3</span>Inventario<span class="chip-c">10</span></a><a class="chip" href="#cat4"><span class="chip-n">4</span>Proyectos<span class="chip-c">10</span></a><a class="chip" href="#cat5"><span class="chip-n">5</span>Recursos Humanos<span class="chip-c">8</span></a><a class="chip" href="#cat6"><span class="chip-n">6</span>Finanzas Personales<span class="chip-c">8</span></a></div></nav>
+<main class="wrap"><section id="cat1" class="cat">
+  <div class="cover"><img src="covers/cat1.svg" alt="FINANZAS" loading="lazy"/></div>
+  <div class="pl-grid"><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Flujo de Caja Mensual</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Fecha · Concepto · Categoría · Ingreso · Egreso · Saldo Acumulado…</div>
+    <div class="pl-auto">⚙️ Saldo acumulado calculado en tiempo real; gráfico de barras ingresos vs egresos por mes; semáforo de saldo (verde/amarillo/rojo según umbral configura</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/01-flujo-de-caja-mensual.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/01-flujo-de-caja-mensual.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Cuentas por Cobrar</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Cliente · Factura N° · Fecha Emisión · Fecha Vencimiento · Monto · Estado (Pendiente/Parcial/Pagado)…</div>
+    <div class="pl-auto">⚙️ Días vencidos = HOY()−Fecha Vencimiento; estado &quot;VENCIDO&quot; automático con formato condicional rojo; total pendiente y total cobrado con SUMAR.SI; lista</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/02-control-de-cuentas-por-cobrar.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/02-control-de-cuentas-por-cobrar.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Cuentas por Pagar</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Proveedor · Concepto · Fecha Vencimiento · Monto · Estado · Días Para Vencer…</div>
+    <div class="pl-auto">⚙️ Días para vencer calculados en tiempo real; prioridad &quot;URGENTE&quot; si vence en ≤7 días; total de compromisos del mes; clasificación por proveedor con tab</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/03-control-de-cuentas-por-pagar.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/03-control-de-cuentas-por-pagar.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Estado de Resultados Mensual</b><span class="pl-n">15 columnas</span></div>
+    <div class="pl-cols">Concepto · Ene · Feb · Mar · Abr · May…</div>
+    <div class="pl-auto">⚙️ Ventas Netas − Costo de Ventas = Utilidad Bruta; Utilidad Bruta − Gastos Operativos = EBITDA; márgenes calculados automáticamente; gráfico de rentabil</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/04-estado-de-resultados-mensual.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/04-estado-de-resultados-mensual.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Presupuesto Anual vs Real</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Categoría · Presupuestado · Real · Variación $ · Variación % · Semáforo</div>
+    <div class="pl-auto">⚙️ Variación = Real − Presupuestado; semáforo automático (verde &lt;5% desvío, amarillo 5–15%, rojo &gt;15%); % de ejecución acumulado; proyección de cierre de</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/05-presupuesto-anual-vs-real.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/05-presupuesto-anual-vs-real.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Gastos por Categoría</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Fecha · Descripción · Categoría · Subcategoría · Monto · Forma de Pago…</div>
+    <div class="pl-auto">⚙️ Tabla dinámica automática por categoría y mes; gráfico circular de distribución; top 5 categorías de mayor gasto; comparativo mes actual vs mes anteri</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/06-control-de-gastos-por-categoria.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/06-control-de-gastos-por-categoria.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Conciliación Bancaria</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Fecha · Descripción · Monto Libro · Monto Banco · Diferencia · Estado (Conciliado/Pendiente)</div>
+    <div class="pl-auto">⚙️ Diferencia = Libro − Banco; suma de partidas en tránsito; balance ajustado final; marcado automático de partidas conciliadas con checkbox; alerta si d</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/07-conciliacion-bancaria.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/07-conciliacion-bancaria.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Impuestos</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Período · Impuesto · Base Gravable · Alícuota % · Monto a Pagar · Fecha Límite…</div>
+    <div class="pl-auto">⚙️ Monto = Base × Alícuota; días para vencimiento en tiempo real; alerta de vencimiento próximo (&lt;10 días) en rojo; historial de pagos con totales anuale</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/08-control-de-impuestos.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/08-control-de-impuestos.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Punto de Equilibrio</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Producto/Servicio · Precio de Venta · Costo Variable Unit. · Margen de Contribución · Costos Fijos · PE Unidades…</div>
+    <div class="pl-auto">⚙️ Margen = Precio − Costo Variable; PE Unidades = Costos Fijos ÷ Margen; PE $ = PE Unidades × Precio; gráfico de cruce costo total e ingreso; simulador </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/09-punto-de-equilibrio.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/09-punto-de-equilibrio.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Proyección de Ventas 12 Meses</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Mes · Ventas Reales (histórico) · Tasa Crecimiento % · Proyección Base · Escenario Optimista · Escenario Pesimista</div>
+    <div class="pl-auto">⚙️ Proyección = Mes anterior × (1 + Tasa); optimista = Base × 1,20; pesimista = Base × 0,80; gráfico de área con banda de confianza; acumulado proyectado</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/10-proyeccion-de-ventas-12-meses.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/10-proyeccion-de-ventas-12-meses.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>ROI de Inversiones del Negocio</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Inversión · Descripción · Fecha · Monto Invertido · Retorno Obtenido · ROI %…</div>
+    <div class="pl-auto">⚙️ ROI % = (Retorno − Inversión) ÷ Inversión × 100; período de recupero = Inversión ÷ (Retorno ÷ meses); ranking automático por ROI con JERARQUIA.EQV; gr</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/11-roi-de-inversiones-del-negocio.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/11-roi-de-inversiones-del-negocio.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Dashboard Financiero Ejecutivo</b><span class="pl-n">5 columnas</span></div>
+    <div class="pl-cols">Fecha · Concepto · Categoría · Monto · Estado (Pendiente/Pagado)</div>
+    <div class="pl-auto">⚙️ Consolida automáticamente datos de Planillas 01–11 con referencias cruzadas; semáforos en todos los KPIs; gráficos sparkline de tendencia de 6 meses; </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat1/12-dashboard-financiero-ejecutivo.xlsx">
+    <a class="bt bt-dl" href="planillas/cat1/12-dashboard-financiero-ejecutivo.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div></div>
+</section><section id="cat2" class="cat">
+  <div class="cover"><img src="covers/cat2.svg" alt="VENTAS" loading="lazy"/></div>
+  <div class="pl-grid"><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro Diario de Ventas</b><span class="pl-n">10 columnas</span></div>
+    <div class="pl-cols">Fecha · N° Venta · Cliente · Producto/Servicio · Cantidad · Precio Unit.…</div>
+    <div class="pl-auto">⚙️ Total = Cantidad × Precio × (1 − Descuento); suma diaria y mensual automática; ticket promedio calculado; ranking de productos más vendidos; gráfico d</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/13-registro-diario-de-ventas.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/13-registro-diario-de-ventas.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Pipeline de Ventas (CRM Básico)</b><span class="pl-n">10 columnas</span></div>
+    <div class="pl-cols">Prospecto · Contacto · Fuente · Producto · Valor Estimado · Etapa (Lead/Calificado/Propuesta/Negociación/Ganado/Perdido)…</div>
+    <div class="pl-auto">⚙️ Valor Ponderado = Valor × Probabilidad; total del pipeline por etapa; tasa de conversión entre etapas con CONTAR.SI; alerta de prospectos sin contacto</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/14-pipeline-de-ventas-crm-basico.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/14-pipeline-de-ventas-crm-basico.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Metas y Cuotas de Ventas</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Vendedor · Meta Mensual · Semana 1 · Semana 2 · Semana 3 · Semana 4…</div>
+    <div class="pl-auto">⚙️ % Cumplimiento = Real ÷ Meta; ranking automático con JERARQUIA.EQV; semáforo de rendimiento; proyección de cierre mensual por ritmo semanal; gráfico d</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/15-metas-y-cuotas-de-ventas.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/15-metas-y-cuotas-de-ventas.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Seguimiento y Retención de Clientes</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Cliente · Clasificación (A/B/C) · Última Compra · Días Sin Comprar · Total Comprado 12M · Ticket Promedio…</div>
+    <div class="pl-auto">⚙️ Días sin comprar = HOY() − Última Compra; clasificación ABC automática por volumen (A=top 20%); estado automático (&gt;90 días = En Riesgo, &gt;180 = Perdid</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/16-seguimiento-y-retencion-de-clientes.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/16-seguimiento-y-retencion-de-clientes.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Análisis de Productos y Servicios</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Producto · Unidades Vendidas · Ingresos · % del Total · Costo · Margen $…</div>
+    <div class="pl-auto">⚙️ % del total con referencia absoluta; ranking por ingreso y por margen; Pareto 80/20 automático (resalta top 20% de productos que generan 80% del ingre</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/17-analisis-de-productos-y-servicios.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/17-analisis-de-productos-y-servicios.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Comisiones</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Vendedor · Ventas del Período · Base de Comisión · % Comisión · Comisión Calculada · Bonus por Meta…</div>
+    <div class="pl-auto">⚙️ Comisión = Ventas × %; bonus si supera meta (umbral configurable); nómina total de comisiones; histórico anual acumulado por vendedor.</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/18-control-de-comisiones.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/18-control-de-comisiones.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Generador de Propuesta Comercial</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Ítem · Descripción · Cantidad · Precio Unit. · Descuento % · Subtotal…</div>
+    <div class="pl-auto">⚙️ Subtotal = Cantidad × Precio × (1 − Descuento); total general; impuesto/IVA configurable; fecha de validez con días restantes automáticos; pie de pági</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/19-generador-de-propuesta-comercial.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/19-generador-de-propuesta-comercial.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Descuentos y Promociones</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Período · Tipo de Promoción · Producto · Precio Normal · Precio Promo · Descuento %…</div>
+    <div class="pl-auto">⚙️ Descuento % = (Normal − Promo) ÷ Normal; impacto real en margen vs precio normal; comparativo de volumen en períodos con y sin promoción; ROI de la pr</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/20-control-de-descuentos-y-promociones.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/20-control-de-descuentos-y-promociones.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Análisis de Canales de Venta</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Canal (Online/Presencial/WhatsApp/Referido/Redes) · Ventas $ · % del Total · Costo de Adquisición · Ticket Promedio · ROI del Canal</div>
+    <div class="pl-auto">⚙️ % distribución automático; ROI = (Ventas − Costo) ÷ Costo; gráfico de torta por canal; evolución mensual por canal; canal más rentable resaltado.</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/21-analisis-de-canales-de-venta.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/21-analisis-de-canales-de-venta.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro de Cotizaciones</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">N° Cotización · Cliente · Fecha · Validez (días) · Monto · Estado (Enviada/Aceptada/Rechazada/Vencida)…</div>
+    <div class="pl-auto">⚙️ Estado &quot;VENCIDA&quot; automático si HOY() &gt; Fecha + Validez; tasa de conversión = Aceptadas ÷ Enviadas; análisis de motivos de rechazo con CONTAR.SI; valor</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/22-registro-de-cotizaciones.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/22-registro-de-cotizaciones.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Previsión de Ingresos Recurrentes</b><span class="pl-n">17 columnas</span></div>
+    <div class="pl-cols">Cliente/Fuente · Tipo (Recurrente/Único) · Frecuencia · Monto Unit. · Ene · Feb…</div>
+    <div class="pl-auto">⚙️ Ingresos recurrentes proyectados automáticamente según frecuencia configurada; total anual; % de ingresos recurrentes vs totales; gráfico de flujo de </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/23-prevision-de-ingresos-recurrentes.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/23-prevision-de-ingresos-recurrentes.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Clientes VIP y Programa de Fidelización</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Cliente VIP · Desde (fecha) · Total Comprado · N° Compras · Ticket Promedio · Último Contacto…</div>
+    <div class="pl-auto">⚙️ Segmentación VIP automática si compra acumulada &gt; umbral configurable; días desde último contacto; recordatorio de próxima acción resaltado si fecha p</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat2/24-clientes-vip-y-programa-de-fidelizacion.xlsx">
+    <a class="bt bt-dl" href="planillas/cat2/24-clientes-vip-y-programa-de-fidelizacion.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div></div>
+</section><section id="cat3" class="cat">
+  <div class="cover"><img src="covers/cat3.svg" alt="INVENTARIO" loading="lazy"/></div>
+  <div class="pl-grid"><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Stock en Tiempo Real</b><span class="pl-n">10 columnas</span></div>
+    <div class="pl-cols">Código · Producto · Unidad · Stock Inicial · Entradas · Salidas…</div>
+    <div class="pl-auto">⚙️ Stock Actual = Inicial + Entradas − Salidas; estado &quot;REPONER&quot; automático si Stock ≤ Mínimo (rojo); Valor = Stock × Costo Promedio; gráfico de rotación</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/25-control-de-stock-en-tiempo-real.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/25-control-de-stock-en-tiempo-real.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro de Entradas (Compras)</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Fecha · Proveedor · Código · Producto · Cantidad · Costo Unit.…</div>
+    <div class="pl-auto">⚙️ Total = Cantidad × Costo; actualiza stock automáticamente via referencia a Planilla 25; costo promedio ponderado recalculado con cada entrada; total d</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/26-registro-de-entradas-compras.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/26-registro-de-entradas-compras.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro de Salidas (Ventas y Consumo)</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Fecha · Destino (Venta/Uso Interno/Devolución al Proveedor) · Código · Producto · Cantidad · Precio Venta…</div>
+    <div class="pl-auto">⚙️ Margen = Precio − Costo; descuento automático del stock; CMV acumulado del período; rentabilidad por producto vendido; alerta si stock resultante &lt; mí</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/27-registro-de-salidas-ventas-y-consumo.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/27-registro-de-salidas-ventas-y-consumo.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Valorización de Inventario</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Producto · Stock Actual · Costo Promedio · Valor de Inventario · % del Total · Clasificación ABC</div>
+    <div class="pl-auto">⚙️ Valor = Stock × Costo; clasificación ABC automática (A = 80% del valor total, B = 15%, C = 5%); total general valuado; antigüedad de stock (días desde</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/28-valorizacion-de-inventario.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/28-valorizacion-de-inventario.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Proveedores</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Proveedor · Producto Principal · Contacto · Teléfono · Plazo de Entrega (días) · Condición de Pago…</div>
+    <div class="pl-auto">⚙️ Ranking por calificación; días desde última compra calculados; alerta de proveedores no consultados &gt;60 días; comparativo de condiciones de pago y pla</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/29-control-de-proveedores.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/29-control-de-proveedores.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Análisis de Rotación de Inventario</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Producto · CMV del Período · Inventario Promedio · Rotación (veces/año) · Días de Inventario · Semáforo</div>
+    <div class="pl-auto">⚙️ Rotación = CMV ÷ Inventario Promedio; Días = 365 ÷ Rotación; semáforo (verde &lt;30 días, amarillo 30–60, rojo &gt;60); productos de baja rotación marcados </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/30-analisis-de-rotacion-de-inventario.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/30-analisis-de-rotacion-de-inventario.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Devoluciones</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Fecha · Tipo (Cliente/Proveedor) · Nombre · Producto · Cantidad · Motivo…</div>
+    <div class="pl-auto">⚙️ Conteo de devoluciones por motivo; % de devolución sobre ventas/compras; re-ingreso automático al stock si Acción = &quot;Cambio&quot;; costo de las devolucione</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/31-control-de-devoluciones.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/31-control-de-devoluciones.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Órdenes de Compra a Proveedores</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Proveedor · Producto · Stock Actual · Stock Mínimo · Punto de Reorden · Cantidad Sugerida…</div>
+    <div class="pl-auto">⚙️ Cantidad sugerida = (Stock Mínimo × 2) − Stock Actual; lista automática de productos a reponer; total de pedido por proveedor; seguimiento de pedidos </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/32-ordenes-de-compra-a-proveedores.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/32-ordenes-de-compra-a-proveedores.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Mermas y Pérdidas</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Fecha · Producto · Cantidad · Costo Unit. · Pérdida Total · Causa (Vencimiento/Rotura/Robo/Error)…</div>
+    <div class="pl-auto">⚙️ Pérdida Total = Cantidad × Costo; total de pérdidas por causa con SUMAR.SI; % de merma sobre inventario total; gráfico de distribución de causas; pérd</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/33-control-de-mermas-y-perdidas.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/33-control-de-mermas-y-perdidas.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Inventario Físico (Conteo Periódico)</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Código · Producto · Stock Sistema · Conteo Físico 1 · Conteo Físico 2 · Promedio Conteo…</div>
+    <div class="pl-auto">⚙️ Diferencia = Sistema − Promedio Físico; resaltado automático de diferencias ≠ 0; costo de las diferencias; reporte de discrepancias ordenado por impac</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat3/34-inventario-fisico-conteo-periodico.xlsx">
+    <a class="bt bt-dl" href="planillas/cat3/34-inventario-fisico-conteo-periodico.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div></div>
+</section><section id="cat4" class="cat">
+  <div class="cover"><img src="covers/cat4.svg" alt="PROYECTOS" loading="lazy"/></div>
+  <div class="pl-grid"><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Plan de Proyecto con Gantt Simplificado</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Tarea · Responsable · Fecha Inicio · Fecha Fin · Duración (días) · % Avance…</div>
+    <div class="pl-auto">⚙️ Duración = Fin − Inicio; Gantt visual generado con formato condicional por semana (barras de colores); % completado del proyecto = promedio ponderado </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/35-plan-de-proyecto-con-gantt-simplificado.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/35-plan-de-proyecto-con-gantt-simplificado.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Tablero de Tareas del Equipo</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Tarea · Proyecto · Responsable · Prioridad (Alta/Media/Baja) · Fecha Límite · Estado (Pendiente/En Curso/Completada/Bloqueada)…</div>
+    <div class="pl-auto">⚙️ Tareas vencidas en rojo automáticamente; % de tareas completadas por proyecto; eficiencia = Estimado ÷ Real; carga de trabajo por persona (suma de hor</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/36-tablero-de-tareas-del-equipo.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/36-tablero-de-tareas-del-equipo.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Presupuesto y Control de Costos del Proyecto</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Rubro · Descripción · Presupuestado · Comprometido · Ejecutado · Saldo Disponible…</div>
+    <div class="pl-auto">⚙️ Saldo = Presupuestado − Ejecutado; semáforo de alerta de sobrejecución (rojo si &gt; 100%); total por rubro; variación comprometido vs ejecutado; proyecc</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/37-presupuesto-y-control-de-costos-del-proyecto.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/37-presupuesto-y-control-de-costos-del-proyecto.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Seguimiento de Hitos y Entregables</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Hito · Entregable · Fecha Planeada · Fecha Real · Desvío (días) · Responsable…</div>
+    <div class="pl-auto">⚙️ Desvío = Real − Planeada; semáforo (verde si ≤0 días, rojo si &gt;0); % de hitos completados sobre total; impacto acumulado en plazo del proyecto.</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/38-seguimiento-de-hitos-y-entregables.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/38-seguimiento-de-hitos-y-entregables.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Matriz de Riesgos</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Riesgo · Probabilidad (1–5) · Impacto (1–5) · Severidad · Categoría · Plan de Mitigación…</div>
+    <div class="pl-auto">⚙️ Severidad = Probabilidad × Impacto; ranking por severidad; matriz visual 5×5 con formato condicional (verde &lt;8, amarillo 8–15, rojo &gt;15); riesgos crít</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/39-matriz-de-riesgos.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/39-matriz-de-riesgos.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Recursos y Costos de Personal</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Recurso · Tipo (Persona/Equipo/Material) · Costo/Hora o Unidad · Cantidad Planeada · Cantidad Real · Costo Planeado…</div>
+    <div class="pl-auto">⚙️ Costos = Cantidad × Costo; desvío = Real − Planeado; utilización % = Real ÷ Planeado; total de recursos por tipo; alerta de desvío &gt;20%.</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/40-control-de-recursos-y-costos-de-personal.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/40-control-de-recursos-y-costos-de-personal.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro de Lecciones Aprendidas</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Fase del Proyecto · Situación Ocurrida · Causa Raíz · Impacto · Acción Correctiva · Responsable…</div>
+    <div class="pl-auto">⚙️ Filtro por categoría y fase; conteo de lecciones por categoría; buscador con BUSCARV por palabra clave; exportable como base de conocimiento del equip</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/41-registro-de-lecciones-aprendidas.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/41-registro-de-lecciones-aprendidas.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Dashboard de Portafolio de Proyectos</b><span class="pl-n">5 columnas</span></div>
+    <div class="pl-cols">Fecha · Concepto · Categoría · Monto · Estado (Pendiente/Pagado)</div>
+    <div class="pl-auto">⚙️ Vista consolidada de todos los proyectos activos con referencias automáticas; semáforo calculado (verde si avance ≥% del tiempo transcurrido, rojo si </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/42-dashboard-de-portafolio-de-proyectos.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/42-dashboard-de-portafolio-de-proyectos.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Cambios y Solicitudes</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">N° · Descripción del Cambio · Solicitado Por · Fecha · Impacto en Plazo (+días) · Impacto en Costo ($)…</div>
+    <div class="pl-auto">⚙️ Total de impacto acumulado en plazo y costo; cambios pendientes de resolución en amarillo; bitácora de aprobaciones; cambios que superan umbral de imp</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/43-control-de-cambios-y-solicitudes.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/43-control-de-cambios-y-solicitudes.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Cierre y Evaluación de Proyecto</b><span class="pl-n">6 columnas</span></div>
+    <div class="pl-cols">Indicador · Meta Original · Resultado Final · Desvío · % Cumplimiento · Comentario</div>
+    <div class="pl-auto">⚙️ Desvío = Real − Meta; % cumplimiento = Real ÷ Meta; semáforo de cumplimiento; promedio general del proyecto; sección de recomendaciones para proyectos</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat4/44-cierre-y-evaluacion-de-proyecto.xlsx">
+    <a class="bt bt-dl" href="planillas/cat4/44-cierre-y-evaluacion-de-proyecto.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div></div>
+</section><section id="cat5" class="cat">
+  <div class="cover"><img src="covers/cat5.svg" alt="RECURSOS HUMANOS" loading="lazy"/></div>
+  <div class="pl-grid"><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro y Legajo de Personal</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">ID · Nombre · Cargo · Departamento · Fecha Ingreso · Tipo Contrato…</div>
+    <div class="pl-auto">⚙️ Antigüedad en años y meses calculada automáticamente; alerta de vencimiento de contratos temporales (&lt;30 días); nómina total activa; distribución por </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/45-registro-y-legajo-de-personal.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/45-registro-y-legajo-de-personal.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Asistencia y Horarios</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Empleado · Fecha · Hora Entrada · Hora Salida · Horas Trabajadas · Horas Extra…</div>
+    <div class="pl-auto">⚙️ Horas = Salida − Entrada; Horas Extra = MAX(0, Trabajadas − 8); % de ausentismo mensual por empleado; resumen de horas totales y extra por período; cá</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/46-control-de-asistencia-y-horarios.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/46-control-de-asistencia-y-horarios.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Liquidación de Haberes / Nómina</b><span class="pl-n">9 columnas</span></div>
+    <div class="pl-cols">Empleado · Salario Bruto · Horas Extra · Bonos · Deducciones Aportes % · Deducciones Impuestos %…</div>
+    <div class="pl-auto">⚙️ Deducciones calculadas por porcentajes configurables por país/región; Neto = Bruto + Extras + Bonos − Deducciones; total de nómina del mes; resumen de</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/47-liquidacion-de-haberes-nomina.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/47-liquidacion-de-haberes-nomina.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Vacaciones y Licencias</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Empleado · Días Vacaciones Anuales · Días Tomados · Días Pendientes · Licencias (días) · Tipo de Licencia…</div>
+    <div class="pl-auto">⚙️ Días pendientes = Anuales − Tomados; acumulación proporcional si ingresó en el año; alerta de empleados con &gt;20 días de vacaciones acumulados; resumen</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/48-control-de-vacaciones-y-licencias.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/48-control-de-vacaciones-y-licencias.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Evaluación de Desempeño</b><span class="pl-n">10 columnas</span></div>
+    <div class="pl-cols">Empleado · Período · Productividad (1–10) · Calidad (1–10) · Trabajo en Equipo (1–10) · Puntualidad (1–10)…</div>
+    <div class="pl-auto">⚙️ Promedio ponderado calculado; calificación automática (≥9=Excelente, 7–8=Bueno, 5–6=Regular, &lt;5=Necesita Mejora); ranking del equipo; evolución por em</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/49-evaluacion-de-desempeno.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/49-evaluacion-de-desempeno.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Plan y Control de Capacitaciones</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Empleado · Capacitación · Fecha · Horas · Costo · Proveedor…</div>
+    <div class="pl-auto">⚙️ Inversión en capacitación por empleado; horas acumuladas de formación; % de empleados capacitados sobre el total; costo por hora capacitada; plan anua</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/50-plan-y-control-de-capacitaciones.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/50-plan-y-control-de-capacitaciones.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Descripción de Puestos y Organigrama</b><span class="pl-n">10 columnas</span></div>
+    <div class="pl-cols">Puesto · Departamento · Reporta A · Headcount Actual · Función Principal 1 · Función 2…</div>
+    <div class="pl-auto">⚙️ Total de headcount por departamento; masa salarial proyectada por rango; jerarquía visual con BUSCARV para reportes; gaps de cobertura (puestos vacant</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/51-descripcion-de-puestos-y-organigrama.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/51-descripcion-de-puestos-y-organigrama.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Beneficios y Compensaciones</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Empleado · Seguro Médico · Vale Alimentación · Transporte · Celular Corporativo · Otros…</div>
+    <div class="pl-auto">⚙️ Total de beneficios por empleado; costo total mensual y anual de beneficios de la empresa; % promedio de beneficios sobre masa salarial; distribución </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat5/52-control-de-beneficios-y-compensaciones.xlsx">
+    <a class="bt bt-dl" href="planillas/cat5/52-control-de-beneficios-y-compensaciones.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div></div>
+</section><section id="cat6" class="cat">
+  <div class="cover"><img src="covers/cat6.svg" alt="FINANZAS PERSONALES" loading="lazy"/></div>
+  <div class="pl-grid"><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Presupuesto Personal Mensual</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Categoría · Subcategoría · Presupuestado · Real · Diferencia · % Cumplimiento…</div>
+    <div class="pl-auto">⚙️ Diferencia = Presupuestado − Real; semáforo (verde si gasta ≤ presupuesto); comparativo con promedio de 3 meses anteriores; % de ahorro = (Ingresos − </div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/53-presupuesto-personal-mensual.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/53-presupuesto-personal-mensual.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Registro de Gastos Personales Diarios</b><span class="pl-n">7 columnas</span></div>
+    <div class="pl-cols">Fecha · Categoría · Descripción · Monto · Forma de Pago (Efectivo/Débito/Crédito/Transferencia) · Necesario/Deseo…</div>
+    <div class="pl-auto">⚙️ Suma diaria y mensual por categoría; separación automática gastos necesarios vs discrecionales; gasto acumulado de tarjeta de crédito; proyección de g</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/54-registro-de-gastos-personales-diarios.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/54-registro-de-gastos-personales-diarios.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Control de Deudas y Créditos</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Acreedor · Tipo (Tarjeta/Préstamo Personal/Cuotas) · Saldo Inicial · Tasa % Mensual · Cuota Mensual · Meses Restantes…</div>
+    <div class="pl-auto">⚙️ Saldo actual calculado con amortización mensual; total de deudas consolidado; cronograma de pagos futuro; fecha de liberación de cada deuda; interés t</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/55-control-de-deudas-y-creditos.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/55-control-de-deudas-y-creditos.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Metas Financieras Personales</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Meta · Monto Objetivo · Ahorro Mensual Asignado · Meses Necesarios · Fecha Objetivo · Monto Ahorrado a la Fecha…</div>
+    <div class="pl-auto">⚙️ Meses = Objetivo ÷ Ahorro Mensual; % avance = Ahorrado ÷ Objetivo; fecha estimada de cumplimiento; semáforo (verde si va en tiempo, rojo si retrasado)</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/56-metas-financieras-personales.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/56-metas-financieras-personales.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Portafolio de Inversiones Personales</b><span class="pl-n">8 columnas</span></div>
+    <div class="pl-cols">Activo · Tipo (Acciones/Bonos/FCI/Cripto/Inmueble/Plazo Fijo) · Fecha Compra · Precio Compra Total · Valor Actual · Ganancia $…</div>
+    <div class="pl-auto">⚙️ Ganancia = Valor Actual − Precio Compra; % del portafolio = Valor ÷ Total; diversificación por tipo con gráfico de torta; rentabilidad total del porta</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/57-portafolio-de-inversiones-personales.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/57-portafolio-de-inversiones-personales.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Estado de Patrimonio Neto Personal</b><span class="pl-n">3 columnas</span></div>
+    <div class="pl-cols">Activos / Pasivos · Descripción · Valor Actual</div>
+    <div class="pl-auto">⚙️ Total Activos; Total Pasivos; Patrimonio Neto = Activos − Pasivos; evolución semestral del patrimonio con comparativo; gráfico de crecimiento patrimon</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/58-estado-de-patrimonio-neto-personal.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/58-estado-de-patrimonio-neto-personal.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Simulador de Retiro / Independencia Financiera</b><span class="pl-n">5 columnas</span></div>
+    <div class="pl-cols">Fecha · Concepto · Categoría · Monto · Estado (Pendiente/Pagado)</div>
+    <div class="pl-auto">⚙️ Capital proyectado al retiro con interés compuesto (fórmula VF); años de sustentabilidad del capital post-retiro; ¿cuánto necesitas ahorrar por mes pa</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/59-simulador-de-retiro-independencia-financiera.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/59-simulador-de-retiro-independencia-financiera.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div><div class="pl">
+  <div class="pl-x">X</div>
+  <div class="pl-b">
+    <div class="pl-t"><b>Dashboard Personal Mensual</b><span class="pl-n">5 columnas</span></div>
+    <div class="pl-cols">Fecha · Concepto · Categoría · Monto · Estado (Pendiente/Pagado)</div>
+    <div class="pl-auto">⚙️ Consolida Planillas 53–59 con referencias automáticas; % de ahorro = Ahorro ÷ Ingresos; semáforo en todos los KPIs; tendencia de 6 meses en gráfico sp</div>
+  </div>
+  <div class="pl-acts" data-file="planillas/cat6/60-dashboard-personal-mensual.xlsx">
+    <a class="bt bt-dl" href="planillas/cat6/60-dashboard-personal-mensual.xlsx" download>⬇ Descargar</a>
+    <button class="bt bt-xl" data-act="excel">Abrir en Excel</button>
+    <button class="bt bt-gs" data-act="sheets">Google Sheets</button>
+  </div>
+</div></div>
+</section></main>
+<div class="foot">Compatible con Excel 2016+, Excel 365 y Google Sheets · Descarga incluida · Actualizaciones gratuitas</div>
+<div class="toast" id="toast"></div>
 <script>
-var DATA={"title":"Kit Maestro de Planillas — Control Total de tu Negocio en 15 Minutos al Día","intro":"","modules":[{"title":"CATEGORÍA 1: FINANZAS (12 planillas)","html":"\u003cp>\u003cstrong>Planilla 01 — Flujo de Caja Mensual\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Concepto | Categoría | Ingreso | Egreso | Saldo Acumulado | Tipo (Fijo/Variable) | Mes\u003c/p>\n\u003cp>Automatismos: Saldo acumulado calculado en tiempo real; gráfico de barras ingresos vs egresos por mes; semáforo de saldo (verde/amarillo/rojo según umbral configurable); totales por categoría con SUMAR.SI; proyección de cierre de mes con base en promedio diario.\u003c/p>\n\u003cp>\u003cstrong>Planilla 02 — Control de Cuentas por Cobrar\u003c/strong>\u003c/p>\n\u003cp>Columnas: Cliente | Factura N° | Fecha Emisión | Fecha Vencimiento | Monto | Estado (Pendiente/Parcial/Pagado) | Días Vencidos | Prioridad\u003c/p>\n\u003cp>Automatismos: Días vencidos = HOY()−Fecha Vencimiento; estado \"VENCIDO\" automático con formato condicional rojo; total pendiente y total cobrado con SUMAR.SI; lista de clientes con mora &gt;30 días resaltada.\u003c/p>\n\u003cp>\u003cstrong>Planilla 03 — Control de Cuentas por Pagar\u003c/strong>\u003c/p>\n\u003cp>Columnas: Proveedor | Concepto | Fecha Vencimiento | Monto | Estado | Días Para Vencer | Prioridad\u003c/p>\n\u003cp>Automatismos: Días para vencer calculados en tiempo real; prioridad \"URGENTE\" si vence en ≤7 días; total de compromisos del mes; clasificación por proveedor con tabla dinámica embebida.\u003c/p>\n\u003cp>\u003cstrong>Planilla 04 — Estado de Resultados Mensual\u003c/strong>\u003c/p>\n\u003cp>Columnas: Concepto | Ene | Feb | Mar | Abr | May | Jun | Jul | Ago | Sep | Oct | Nov | Dic | Total Año | % del Total\u003c/p>\n\u003cp>Automatismos: Ventas Netas − Costo de Ventas = Utilidad Bruta; Utilidad Bruta − Gastos Operativos = EBITDA; márgenes calculados automáticamente; gráfico de rentabilidad mensual; comparativo vs año anterior.\u003c/p>\n\u003cp>\u003cstrong>Planilla 05 — Presupuesto Anual vs Real\u003c/strong>\u003c/p>\n\u003cp>Columnas: Categoría | Presupuestado | Real | Variación $ | Variación % | Semáforo\u003c/p>\n\u003cp>Automatismos: Variación = Real − Presupuestado; semáforo automático (verde &lt;5% desvío, amarillo 5–15%, rojo &gt;15%); % de ejecución acumulado; proyección de cierre de año con promedio mensual real.\u003c/p>\n\u003cp>\u003cstrong>Planilla 06 — Control de Gastos por Categoría\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Descripción | Categoría | Subcategoría | Monto | Forma de Pago | Comprobante N°\u003c/p>\n\u003cp>Automatismos: Tabla dinámica automática por categoría y mes; gráfico circular de distribución; top 5 categorías de mayor gasto; comparativo mes actual vs mes anterior con flecha de tendencia.\u003c/p>\n\u003cp>\u003cstrong>Planilla 07 — Conciliación Bancaria\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Descripción | Monto Libro | Monto Banco | Diferencia | Estado (Conciliado/Pendiente)\u003c/p>\n\u003cp>Automatismos: Diferencia = Libro − Banco; suma de partidas en tránsito; balance ajustado final; marcado automático de partidas conciliadas con checkbox; alerta si diferencia final ≠ 0.\u003c/p>\n\u003cp>\u003cstrong>Planilla 08 — Control de Impuestos\u003c/strong>\u003c/p>\n\u003cp>Columnas: Período | Impuesto | Base Gravable | Alícuota % | Monto a Pagar | Fecha Límite | Estado | Comprobante\u003c/p>\n\u003cp>Automatismos: Monto = Base × Alícuota; días para vencimiento en tiempo real; alerta de vencimiento próximo (&lt;10 días) en rojo; historial de pagos con totales anuales por tipo de impuesto.\u003c/p>\n\u003cp>\u003cstrong>Planilla 09 — Punto de Equilibrio\u003c/strong>\u003c/p>\n\u003cp>Columnas: Producto/Servicio | Precio de Venta | Costo Variable Unit. | Margen de Contribución | Costos Fijos | PE Unidades | PE en $\u003c/p>\n\u003cp>Automatismos: Margen = Precio − Costo Variable; PE Unidades = Costos Fijos ÷ Margen; PE $ = PE Unidades × Precio; gráfico de cruce costo total e ingreso; simulador interactivo \"¿qué pasa si cambio el precio?\".\u003c/p>\n\u003cp>\u003cstrong>Planilla 10 — Proyección de Ventas 12 Meses\u003c/strong>\u003c/p>\n\u003cp>Columnas: Mes | Ventas Reales (histórico) | Tasa Crecimiento % | Proyección Base | Escenario Optimista | Escenario Pesimista\u003c/p>\n\u003cp>Automatismos: Proyección = Mes anterior × (1 + Tasa); optimista = Base × 1,20; pesimista = Base × 0,80; gráfico de área con banda de confianza; acumulado proyectado del año.\u003c/p>\n\u003cp>\u003cstrong>Planilla 11 — ROI de Inversiones del Negocio\u003c/strong>\u003c/p>\n\u003cp>Columnas: Inversión | Descripción | Fecha | Monto Invertido | Retorno Obtenido | ROI % | Período de Recupero (meses)\u003c/p>\n\u003cp>Automatismos: ROI % = (Retorno − Inversión) ÷ Inversión × 100; período de recupero = Inversión ÷ (Retorno ÷ meses); ranking automático por ROI con JERARQUIA.EQV; gráfico comparativo de inversiones.\u003c/p>\n\u003cp>\u003cstrong>Planilla 12 — Dashboard Financiero Ejecutivo\u003c/strong>\u003c/p>\n\u003cp>KPIs consolidados: Ingresos del Mes | Egresos | Resultado Neto | Margen % | Cuentas por Cobrar | Cuentas por Pagar | Posición de Caja\u003c/p>\n\u003cp>Automatismos: Consolida automáticamente datos de Planillas 01–11 con referencias cruzadas; semáforos en todos los KPIs; gráficos sparkline de tendencia de 6 meses; fecha de última actualización automática.\u003c/p>\n\u003chr>","icon":"book","cover":"linear-gradient(145deg,hsl(222 15% 30%),hsl(222 18% 21%))"},{"title":"CATEGORÍA 2: VENTAS (12 planillas)","html":"\u003cp>\u003cstrong>Planilla 13 — Registro Diario de Ventas\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | N° Venta | Cliente | Producto/Servicio | Cantidad | Precio Unit. | Descuento % | Total | Forma de Pago | Vendedor\u003c/p>\n\u003cp>Automatismos: Total = Cantidad × Precio × (1 − Descuento); suma diaria y mensual automática; ticket promedio calculado; ranking de productos más vendidos; gráfico de ventas por día de la semana.\u003c/p>\n\u003cp>\u003cstrong>Planilla 14 — Pipeline de Ventas (CRM Básico)\u003c/strong>\u003c/p>\n\u003cp>Columnas: Prospecto | Contacto | Fuente | Producto | Valor Estimado | Etapa (Lead/Calificado/Propuesta/Negociación/Ganado/Perdido) | Probabilidad % | Valor Ponderado | Próxima Acción | Fecha Próximo Contacto\u003c/p>\n\u003cp>Automatismos: Valor Ponderado = Valor × Probabilidad; total del pipeline por etapa; tasa de conversión entre etapas con CONTAR.SI; alerta de prospectos sin contacto en &gt;7 días con formato rojo.\u003c/p>\n\u003cp>\u003cstrong>Planilla 15 — Metas y Cuotas de Ventas\u003c/strong>\u003c/p>\n\u003cp>Columnas: Vendedor | Meta Mensual | Semana 1 | Semana 2 | Semana 3 | Semana 4 | Total Mes | % Cumplimiento | Ranking\u003c/p>\n\u003cp>Automatismos: % Cumplimiento = Real ÷ Meta; ranking automático con JERARQUIA.EQV; semáforo de rendimiento; proyección de cierre mensual por ritmo semanal; gráfico de termómetro por vendedor.\u003c/p>\n\u003cp>\u003cstrong>Planilla 16 — Seguimiento y Retención de Clientes\u003c/strong>\u003c/p>\n\u003cp>Columnas: Cliente | Clasificación (A/B/C) | Última Compra | Días Sin Comprar | Total Comprado 12M | Ticket Promedio | Estado (Activo/En Riesgo/Perdido)\u003c/p>\n\u003cp>Automatismos: Días sin comprar = HOY() − Última Compra; clasificación ABC automática por volumen (A=top 20%); estado automático (&gt;90 días = En Riesgo, &gt;180 = Perdido); lista priorizada de reactivación.\u003c/p>\n\u003cp>\u003cstrong>Planilla 17 — Análisis de Productos y Servicios\u003c/strong>\u003c/p>\n\u003cp>Columnas: Producto | Unidades Vendidas | Ingresos | % del Total | Costo | Margen $ | Margen % | Ranking\u003c/p>\n\u003cp>Automatismos: % del total con referencia absoluta; ranking por ingreso y por margen; Pareto 80/20 automático (resalta top 20% de productos que generan 80% del ingreso); gráfico de barras comparativo.\u003c/p>\n\u003cp>\u003cstrong>Planilla 18 — Control de Comisiones\u003c/strong>\u003c/p>\n\u003cp>Columnas: Vendedor | Ventas del Período | Base de Comisión | % Comisión | Comisión Calculada | Bonus por Meta | Total a Pagar | Estado (Pendiente/Pagado)\u003c/p>\n\u003cp>Automatismos: Comisión = Ventas × %; bonus si supera meta (umbral configurable); nómina total de comisiones; histórico anual acumulado por vendedor.\u003c/p>\n\u003cp>\u003cstrong>Planilla 19 — Generador de Propuesta Comercial\u003c/strong>\u003c/p>\n\u003cp>Columnas: Ítem | Descripción | Cantidad | Precio Unit. | Descuento % | Subtotal | Notas\u003c/p>\n\u003cp>Automatismos: Subtotal = Cantidad × Precio × (1 − Descuento); total general; impuesto/IVA configurable; fecha de validez con días restantes automáticos; pie de página con condiciones y forma de pago.\u003c/p>\n\u003cp>\u003cstrong>Planilla 20 — Control de Descuentos y Promociones\u003c/strong>\u003c/p>\n\u003cp>Columnas: Período | Tipo de Promoción | Producto | Precio Normal | Precio Promo | Descuento % | Unidades Vendidas | Impacto en Margen $\u003c/p>\n\u003cp>Automatismos: Descuento % = (Normal − Promo) ÷ Normal; impacto real en margen vs precio normal; comparativo de volumen en períodos con y sin promoción; ROI de la promoción.\u003c/p>\n\u003cp>\u003cstrong>Planilla 21 — Análisis de Canales de Venta\u003c/strong>\u003c/p>\n\u003cp>Columnas: Canal (Online/Presencial/WhatsApp/Referido/Redes) | Ventas $ | % del Total | Costo de Adquisición | Ticket Promedio | ROI del Canal\u003c/p>\n\u003cp>Automatismos: % distribución automático; ROI = (Ventas − Costo) ÷ Costo; gráfico de torta por canal; evolución mensual por canal; canal más rentable resaltado.\u003c/p>\n\u003cp>\u003cstrong>Planilla 22 — Registro de Cotizaciones\u003c/strong>\u003c/p>\n\u003cp>Columnas: N° Cotización | Cliente | Fecha | Validez (días) | Monto | Estado (Enviada/Aceptada/Rechazada/Vencida) | Motivo Rechazo | N° Venta Generada\u003c/p>\n\u003cp>Automatismos: Estado \"VENCIDA\" automático si HOY() &gt; Fecha + Validez; tasa de conversión = Aceptadas ÷ Enviadas; análisis de motivos de rechazo con CONTAR.SI; valor en cotizaciones activas.\u003c/p>\n\u003cp>\u003cstrong>Planilla 23 — Previsión de Ingresos Recurrentes\u003c/strong>\u003c/p>\n\u003cp>Columnas: Cliente/Fuente | Tipo (Recurrente/Único) | Frecuencia | Monto Unit. | Ene | Feb | Mar | Abr | May | Jun | Jul | Ago | Sep | Oct | Nov | Dic | Total\u003c/p>\n\u003cp>Automatismos: Ingresos recurrentes proyectados automáticamente según frecuencia configurada; total anual; % de ingresos recurrentes vs totales; gráfico de flujo de ingresos.\u003c/p>\n\u003cp>\u003cstrong>Planilla 24 — Clientes VIP y Programa de Fidelización\u003c/strong>\u003c/p>\n\u003cp>Columnas: Cliente VIP | Desde (fecha) | Total Comprado | N° Compras | Ticket Promedio | Último Contacto | Próxima Acción | Fecha Recordatorio\u003c/p>\n\u003cp>Automatismos: Segmentación VIP automática si compra acumulada &gt; umbral configurable; días desde último contacto; recordatorio de próxima acción resaltado si fecha pasada; valor del cliente en el año.\u003c/p>\n\u003chr>","icon":"target","cover":"linear-gradient(145deg,hsl(222 15% 26%),hsl(222 18% 17%))"},{"title":"CATEGORÍA 3: INVENTARIO (10 planillas)","html":"\u003cp>\u003cstrong>Planilla 25 — Control de Stock en Tiempo Real\u003c/strong>\u003c/p>\n\u003cp>Columnas: Código | Producto | Unidad | Stock Inicial | Entradas | Salidas | Stock Actual | Stock Mínimo | Estado | Valor en Stock\u003c/p>\n\u003cp>Automatismos: Stock Actual = Inicial + Entradas − Salidas; estado \"REPONER\" automático si Stock ≤ Mínimo (rojo); Valor = Stock × Costo Promedio; gráfico de rotación por producto.\u003c/p>\n\u003cp>\u003cstrong>Planilla 26 — Registro de Entradas (Compras)\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Proveedor | Código | Producto | Cantidad | Costo Unit. | Total | N° Factura | N° Remito\u003c/p>\n\u003cp>Automatismos: Total = Cantidad × Costo; actualiza stock automáticamente via referencia a Planilla 25; costo promedio ponderado recalculado con cada entrada; total de compras por proveedor y período.\u003c/p>\n\u003cp>\u003cstrong>Planilla 27 — Registro de Salidas (Ventas y Consumo)\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Destino (Venta/Uso Interno/Devolución al Proveedor) | Código | Producto | Cantidad | Precio Venta | Costo Promedio | Margen $\u003c/p>\n\u003cp>Automatismos: Margen = Precio − Costo; descuento automático del stock; CMV acumulado del período; rentabilidad por producto vendido; alerta si stock resultante &lt; mínimo.\u003c/p>\n\u003cp>\u003cstrong>Planilla 28 — Valorización de Inventario\u003c/strong>\u003c/p>\n\u003cp>Columnas: Producto | Stock Actual | Costo Promedio | Valor de Inventario | % del Total | Clasificación ABC\u003c/p>\n\u003cp>Automatismos: Valor = Stock × Costo; clasificación ABC automática (A = 80% del valor total, B = 15%, C = 5%); total general valuado; antigüedad de stock (días desde última entrada).\u003c/p>\n\u003cp>\u003cstrong>Planilla 29 — Control de Proveedores\u003c/strong>\u003c/p>\n\u003cp>Columnas: Proveedor | Producto Principal | Contacto | Teléfono | Plazo de Entrega (días) | Condición de Pago | Calificación (1–5) | Última Compra | Observaciones\u003c/p>\n\u003cp>Automatismos: Ranking por calificación; días desde última compra calculados; alerta de proveedores no consultados &gt;60 días; comparativo de condiciones de pago y plazo de entrega.\u003c/p>\n\u003cp>\u003cstrong>Planilla 30 — Análisis de Rotación de Inventario\u003c/strong>\u003c/p>\n\u003cp>Columnas: Producto | CMV del Período | Inventario Promedio | Rotación (veces/año) | Días de Inventario | Semáforo\u003c/p>\n\u003cp>Automatismos: Rotación = CMV ÷ Inventario Promedio; Días = 365 ÷ Rotación; semáforo (verde &lt;30 días, amarillo 30–60, rojo &gt;60); productos de baja rotación marcados automáticamente para revisión.\u003c/p>\n\u003cp>\u003cstrong>Planilla 31 — Control de Devoluciones\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Tipo (Cliente/Proveedor) | Nombre | Producto | Cantidad | Motivo | Acción (Cambio/NC/Descarte) | Estado\u003c/p>\n\u003cp>Automatismos: Conteo de devoluciones por motivo; % de devolución sobre ventas/compras; re-ingreso automático al stock si Acción = \"Cambio\"; costo de las devoluciones por período.\u003c/p>\n\u003cp>\u003cstrong>Planilla 32 — Órdenes de Compra a Proveedores\u003c/strong>\u003c/p>\n\u003cp>Columnas: Proveedor | Producto | Stock Actual | Stock Mínimo | Punto de Reorden | Cantidad Sugerida | Precio Estimado | Total | Estado Pedido\u003c/p>\n\u003cp>Automatismos: Cantidad sugerida = (Stock Mínimo × 2) − Stock Actual; lista automática de productos a reponer; total de pedido por proveedor; seguimiento de pedidos pendientes con días transcurridos.\u003c/p>\n\u003cp>\u003cstrong>Planilla 33 — Control de Mermas y Pérdidas\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Producto | Cantidad | Costo Unit. | Pérdida Total | Causa (Vencimiento/Rotura/Robo/Error) | Responsable | Acción Tomada\u003c/p>\n\u003cp>Automatismos: Pérdida Total = Cantidad × Costo; total de pérdidas por causa con SUMAR.SI; % de merma sobre inventario total; gráfico de distribución de causas; pérdidas acumuladas del año.\u003c/p>\n\u003cp>\u003cstrong>Planilla 34 — Inventario Físico (Conteo Periódico)\u003c/strong>\u003c/p>\n\u003cp>Columnas: Código | Producto | Stock Sistema | Conteo Físico 1 | Conteo Físico 2 | Promedio Conteo | Diferencia | Acción (Ajustar/Investigar)\u003c/p>\n\u003cp>Automatismos: Diferencia = Sistema − Promedio Físico; resaltado automático de diferencias ≠ 0; costo de las diferencias; reporte de discrepancias ordenado por impacto; ajuste de inventario con campo de justificación obligatorio.\u003c/p>\n\u003chr>","icon":"package","cover":"linear-gradient(145deg,hsl(222 15% 34%),hsl(222 18% 25%))"},{"title":"CATEGORÍA 4: PROYECTOS (10 planillas)","html":"\u003cp>\u003cstrong>Planilla 35 — Plan de Proyecto con Gantt Simplificado\u003c/strong>\u003c/p>\n\u003cp>Columnas: Tarea | Responsable | Fecha Inicio | Fecha Fin | Duración (días) | % Avance | Estado | Dependencia de Tarea N°\u003c/p>\n\u003cp>Automatismos: Duración = Fin − Inicio; Gantt visual generado con formato condicional por semana (barras de colores); % completado del proyecto = promedio ponderado de avances; días restantes totales; tareas críticas (sin holgura) resaltadas.\u003c/p>\n\u003cp>\u003cstrong>Planilla 36 — Tablero de Tareas del Equipo\u003c/strong>\u003c/p>\n\u003cp>Columnas: Tarea | Proyecto | Responsable | Prioridad (Alta/Media/Baja) | Fecha Límite | Estado (Pendiente/En Curso/Completada/Bloqueada) | % Avance | Tiempo Estimado (h) | Tiempo Real (h)\u003c/p>\n\u003cp>Automatismos: Tareas vencidas en rojo automáticamente; % de tareas completadas por proyecto; eficiencia = Estimado ÷ Real; carga de trabajo por persona (suma de horas estimadas pendientes).\u003c/p>\n\u003cp>\u003cstrong>Planilla 37 — Presupuesto y Control de Costos del Proyecto\u003c/strong>\u003c/p>\n\u003cp>Columnas: Rubro | Descripción | Presupuestado | Comprometido | Ejecutado | Saldo Disponible | % Ejecución | Semáforo\u003c/p>\n\u003cp>Automatismos: Saldo = Presupuestado − Ejecutado; semáforo de alerta de sobrejecución (rojo si &gt; 100%); total por rubro; variación comprometido vs ejecutado; proyección de costo final.\u003c/p>\n\u003cp>\u003cstrong>Planilla 38 — Seguimiento de Hitos y Entregables\u003c/strong>\u003c/p>\n\u003cp>Columnas: Hito | Entregable | Fecha Planeada | Fecha Real | Desvío (días) | Responsable | Estado | Aprobado Por | Fecha Aprobación\u003c/p>\n\u003cp>Automatismos: Desvío = Real − Planeada; semáforo (verde si ≤0 días, rojo si &gt;0); % de hitos completados sobre total; impacto acumulado en plazo del proyecto.\u003c/p>\n\u003cp>\u003cstrong>Planilla 39 — Matriz de Riesgos\u003c/strong>\u003c/p>\n\u003cp>Columnas: Riesgo | Probabilidad (1–5) | Impacto (1–5) | Severidad | Categoría | Plan de Mitigación | Responsable | Estado (Activo/Mitigado/Materializado)\u003c/p>\n\u003cp>Automatismos: Severidad = Probabilidad × Impacto; ranking por severidad; matriz visual 5×5 con formato condicional (verde &lt;8, amarillo 8–15, rojo &gt;15); riesgos críticos resaltados; alertas de riesgos sin plan de mitigación.\u003c/p>\n\u003cp>\u003cstrong>Planilla 40 — Control de Recursos y Costos de Personal\u003c/strong>\u003c/p>\n\u003cp>Columnas: Recurso | Tipo (Persona/Equipo/Material) | Costo/Hora o Unidad | Cantidad Planeada | Cantidad Real | Costo Planeado | Costo Real | Desvío $\u003c/p>\n\u003cp>Automatismos: Costos = Cantidad × Costo; desvío = Real − Planeado; utilización % = Real ÷ Planeado; total de recursos por tipo; alerta de desvío &gt;20%.\u003c/p>\n\u003cp>\u003cstrong>Planilla 41 — Registro de Lecciones Aprendidas\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fase del Proyecto | Situación Ocurrida | Causa Raíz | Impacto | Acción Correctiva | Responsable | Fecha | Categoría (Técnica/Proceso/Personas/Cliente)\u003c/p>\n\u003cp>Automatismos: Filtro por categoría y fase; conteo de lecciones por categoría; buscador con BUSCARV por palabra clave; exportable como base de conocimiento del equipo.\u003c/p>\n\u003cp>\u003cstrong>Planilla 42 — Dashboard de Portafolio de Proyectos\u003c/strong>\u003c/p>\n\u003cp>KPIs: Proyecto | Estado | % Avance | Presupuesto | Ejecutado | % Budget | Fecha Fin Planeada | Semáforo General\u003c/p>\n\u003cp>Automatismos: Vista consolidada de todos los proyectos activos con referencias automáticas; semáforo calculado (verde si avance ≥% del tiempo transcurrido, rojo si no); proyectos en riesgo destacados; presupuesto consolidado del portafolio.\u003c/p>\n\u003cp>\u003cstrong>Planilla 43 — Control de Cambios y Solicitudes\u003c/strong>\u003c/p>\n\u003cp>Columnas: N° | Descripción del Cambio | Solicitado Por | Fecha | Impacto en Plazo (+días) | Impacto en Costo ($) | Estado (Aprobado/Rechazado/Pendiente) | Aprobado Por\u003c/p>\n\u003cp>Automatismos: Total de impacto acumulado en plazo y costo; cambios pendientes de resolución en amarillo; bitácora de aprobaciones; cambios que superan umbral de impacto marcados en rojo.\u003c/p>\n\u003cp>\u003cstrong>Planilla 44 — Cierre y Evaluación de Proyecto\u003c/strong>\u003c/p>\n\u003cp>Columnas: Indicador | Meta Original | Resultado Final | Desvío | % Cumplimiento | Comentario\u003c/p>\n\u003cp>Automatismos: Desvío = Real − Meta; % cumplimiento = Real ÷ Meta; semáforo de cumplimiento; promedio general del proyecto; sección de recomendaciones para proyectos futuros.\u003c/p>\n\u003chr>","icon":"image","cover":"linear-gradient(145deg,hsl(222 15% 28%),hsl(222 18% 19%))"},{"title":"CATEGORÍA 5: RECURSOS HUMANOS (8 planillas)","html":"\u003cp>\u003cstrong>Planilla 45 — Registro y Legajo de Personal\u003c/strong>\u003c/p>\n\u003cp>Columnas: ID | Nombre | Cargo | Departamento | Fecha Ingreso | Tipo Contrato | Salario Base | Cuenta Bancaria | Estado (Activo/Inactivo)\u003c/p>\n\u003cp>Automatismos: Antigüedad en años y meses calculada automáticamente; alerta de vencimiento de contratos temporales (&lt;30 días); nómina total activa; distribución por departamento con tabla dinámica.\u003c/p>\n\u003cp>\u003cstrong>Planilla 46 — Control de Asistencia y Horarios\u003c/strong>\u003c/p>\n\u003cp>Columnas: Empleado | Fecha | Hora Entrada | Hora Salida | Horas Trabajadas | Horas Extra | Ausencia (S/N) | Motivo Ausencia\u003c/p>\n\u003cp>Automatismos: Horas = Salida − Entrada; Horas Extra = MAX(0, Trabajadas − 8); % de ausentismo mensual por empleado; resumen de horas totales y extra por período; cálculo automático de días hábiles trabajados.\u003c/p>\n\u003cp>\u003cstrong>Planilla 47 — Liquidación de Haberes / Nómina\u003c/strong>\u003c/p>\n\u003cp>Columnas: Empleado | Salario Bruto | Horas Extra | Bonos | Deducciones Aportes % | Deducciones Impuestos % | Total Deducciones | Salario Neto | Forma de Pago\u003c/p>\n\u003cp>Automatismos: Deducciones calculadas por porcentajes configurables por país/región; Neto = Bruto + Extras + Bonos − Deducciones; total de nómina del mes; resumen de costo laboral por departamento.\u003c/p>\n\u003cp>\u003cstrong>Planilla 48 — Control de Vacaciones y Licencias\u003c/strong>\u003c/p>\n\u003cp>Columnas: Empleado | Días Vacaciones Anuales | Días Tomados | Días Pendientes | Licencias (días) | Tipo de Licencia | Próximas Vacaciones (fecha)\u003c/p>\n\u003cp>Automatismos: Días pendientes = Anuales − Tomados; acumulación proporcional si ingresó en el año; alerta de empleados con &gt;20 días de vacaciones acumulados; resumen de ausencias planificadas por mes.\u003c/p>\n\u003cp>\u003cstrong>Planilla 49 — Evaluación de Desempeño\u003c/strong>\u003c/p>\n\u003cp>Columnas: Empleado | Período | Productividad (1–10) | Calidad (1–10) | Trabajo en Equipo (1–10) | Puntualidad (1–10) | Iniciativa (1–10) | Promedio | Calificación | Observaciones\u003c/p>\n\u003cp>Automatismos: Promedio ponderado calculado; calificación automática (≥9=Excelente, 7–8=Bueno, 5–6=Regular, &lt;5=Necesita Mejora); ranking del equipo; evolución por empleado en múltiples períodos; gráfico de araña comparativo.\u003c/p>\n\u003cp>\u003cstrong>Planilla 50 — Plan y Control de Capacitaciones\u003c/strong>\u003c/p>\n\u003cp>Columnas: Empleado | Capacitación | Fecha | Horas | Costo | Proveedor | Estado (Planeada/En Curso/Realizada) | Resultado/Nota\u003c/p>\n\u003cp>Automatismos: Inversión en capacitación por empleado; horas acumuladas de formación; % de empleados capacitados sobre el total; costo por hora capacitada; plan anual de capacitaciones.\u003c/p>\n\u003cp>\u003cstrong>Planilla 51 — Descripción de Puestos y Organigrama\u003c/strong>\u003c/p>\n\u003cp>Columnas: Puesto | Departamento | Reporta A | Headcount Actual | Función Principal 1 | Función 2 | Función 3 | Requisito Mínimo | Rango Salarial Min | Rango Salarial Max\u003c/p>\n\u003cp>Automatismos: Total de headcount por departamento; masa salarial proyectada por rango; jerarquía visual con BUSCARV para reportes; gaps de cobertura (puestos vacantes).\u003c/p>\n\u003cp>\u003cstrong>Planilla 52 — Control de Beneficios y Compensaciones\u003c/strong>\u003c/p>\n\u003cp>Columnas: Empleado | Seguro Médico | Vale Alimentación | Transporte | Celular Corporativo | Otros | Total Beneficios Mes | % sobre Salario Bruto\u003c/p>\n\u003cp>Automatismos: Total de beneficios por empleado; costo total mensual y anual de beneficios de la empresa; % promedio de beneficios sobre masa salarial; distribución por tipo de beneficio.\u003c/p>\n\u003chr>","icon":"chart","cover":"linear-gradient(145deg,hsl(222 15% 32%),hsl(222 18% 23%))"},{"title":"CATEGORÍA 6: FINANZAS PERSONALES (8 planillas)","html":"\u003cp>\u003cstrong>Planilla 53 — Presupuesto Personal Mensual\u003c/strong>\u003c/p>\n\u003cp>Columnas: Categoría | Subcategoría | Presupuestado | Real | Diferencia | % Cumplimiento | Tendencia vs Mes Anterior\u003c/p>\n\u003cp>Automatismos: Diferencia = Presupuestado − Real; semáforo (verde si gasta ≤ presupuesto); comparativo con promedio de 3 meses anteriores; % de ahorro = (Ingresos − Gastos) ÷ Ingresos; gráfico de distribución de gastos.\u003c/p>\n\u003cp>\u003cstrong>Planilla 54 — Registro de Gastos Personales Diarios\u003c/strong>\u003c/p>\n\u003cp>Columnas: Fecha | Categoría | Descripción | Monto | Forma de Pago (Efectivo/Débito/Crédito/Transferencia) | Necesario/Deseo | N° de Cuotas\u003c/p>\n\u003cp>Automatismos: Suma diaria y mensual por categoría; separación automática gastos necesarios vs discrecionales; gasto acumulado de tarjeta de crédito; proyección de gasto del mes con base en promedio diario actual.\u003c/p>\n\u003cp>\u003cstrong>Planilla 55 — Control de Deudas y Créditos\u003c/strong>\u003c/p>\n\u003cp>Columnas: Acreedor | Tipo (Tarjeta/Préstamo Personal/Cuotas) | Saldo Inicial | Tasa % Mensual | Cuota Mensual | Meses Restantes | Saldo Actual | Fecha Fin\u003c/p>\n\u003cp>Automatismos: Saldo actual calculado con amortización mensual; total de deudas consolidado; cronograma de pagos futuro; fecha de liberación de cada deuda; interés total a pagar en la vida del crédito.\u003c/p>\n\u003cp>\u003cstrong>Planilla 56 — Metas Financieras Personales\u003c/strong>\u003c/p>\n\u003cp>Columnas: Meta | Monto Objetivo | Ahorro Mensual Asignado | Meses Necesarios | Fecha Objetivo | Monto Ahorrado a la Fecha | % Avance | Estado\u003c/p>\n\u003cp>Automatismos: Meses = Objetivo ÷ Ahorro Mensual; % avance = Ahorrado ÷ Objetivo; fecha estimada de cumplimiento; semáforo (verde si va en tiempo, rojo si retrasado); barra de progreso visual.\u003c/p>\n\u003cp>\u003cstrong>Planilla 57 — Portafolio de Inversiones Personales\u003c/strong>\u003c/p>\n\u003cp>Columnas: Activo | Tipo (Acciones/Bonos/FCI/Cripto/Inmueble/Plazo Fijo) | Fecha Compra | Precio Compra Total | Valor Actual | Ganancia $ | Ganancia % | % del Portafolio\u003c/p>\n\u003cp>Automatismos: Ganancia = Valor Actual − Precio Compra; % del portafolio = Valor ÷ Total; diversificación por tipo con gráfico de torta; rentabilidad total del portafolio ponderada por participación; variación vs mes anterior.\u003c/p>\n\u003cp>\u003cstrong>Planilla 58 — Estado de Patrimonio Neto Personal\u003c/strong>\u003c/p>\n\u003cp>Columnas: Activos / Pasivos | Descripción | Valor Actual\u003c/p>\n\u003cp>Secciones: Activos Corrientes (efectivo, inversiones corto plazo) | Activos Fijos (inmueble, vehículo) | Pasivos Corrientes (deudas &lt;1 año) | Pasivos Largo Plazo (hipoteca, préstamos)\u003c/p>\n\u003cp>Automatismos: Total Activos; Total Pasivos; Patrimonio Neto = Activos − Pasivos; evolución semestral del patrimonio con comparativo; gráfico de crecimiento patrimonial.\u003c/p>\n\u003cp>\u003cstrong>Planilla 59 — Simulador de Retiro / Independencia Financiera\u003c/strong>\u003c/p>\n\u003cp>Parámetros configurables: Edad actual | Edad objetivo de retiro | Ahorro mensual actual | Rendimiento anual esperado % | Inflación % anual | Meta de capital al retiro | Ingreso mensual requerido en retiro\u003c/p>\n\u003cp>Automatismos: Capital proyectado al retiro con interés compuesto (fórmula VF); años de sustentabilidad del capital post-retiro; ¿cuánto necesitas ahorrar por mes para llegar a la meta? (calculado automáticamente); gráfico de crecimiento del fondo año a año; escenario optimista/pesimista con tasa ±2%.\u003c/p>\n\u003cp>\u003cstrong>Planilla 60 — Dashboard Personal Mensual\u003c/strong>\u003c/p>\n\u003cp>KPIs: Ingresos del Mes | Gastos Totales | Ahorro del Mes | % de Ahorro | Total de Deudas | Patrimonio Neto | Meta Prioritaria del Mes | % Avance de Meta\u003c/p>\n\u003cp>Automatismos: Consolida Planillas 53–59 con referencias automáticas; % de ahorro = Ahorro ÷ Ingresos; semáforo en todos los KPIs; tendencia de 6 meses en gráfico sparkline; resumen de próximas metas y fecha más cercana.\u003c/p>\n\u003chr>","icon":"target","cover":"linear-gradient(145deg,hsl(222 15% 24%),hsl(222 18% 16%))"},{"title":"Guía de Inicio Rápido","html":"\u003cp>\u003cstrong>PASO 1 — Descarga y organiza (2 minutos)\u003c/strong>\u003c/p>\n\u003cp>Descarga el archivo .zip desde tu email o área de miembros → Haz clic derecho → \"Extraer todo\" → Crea una carpeta en tu escritorio llamada \"Mis Planillas de Negocio\" → Verás 6 carpetas, una por categoría.\u003c/p>\n\u003cp>\u003cstrong>PASO 2 — Elige por dónde empezar (1 minuto)\u003c/strong>\u003c/p>\n\u003cul>\n\u003cli>¿Quieres controlar tu dinero primero? → CATEGORIA_1_Finanzas / Planilla_01_Flujo_de_Caja.xlsx\u003c/li>\n\u003cli>¿Quieres seguir tus ventas? → CATEGORIA_2_Ventas / Planilla_13_Registro_Diario.xlsx\u003c/li>\n\u003cli>¿Tienes productos físicos o inventario? → CATEGORIA_3_Inventario / Planilla_25_Control_de_Stock.xlsx\u003c/li>\n\u003cli>¿Tienes empleados? → CATEGORIA_5_RH / Planilla_45_Registro_de_Personal.xlsx\u003c/li>\n\u003c/ul>\n\u003cp>\u003cstrong>PASO 3 — Habilita las macros si Excel te lo pide\u003c/strong>\u003c/p>\n\u003cp>Al abrir cualquier planilla, si aparece una barra amarilla que dice \"Se ha deshabilitado el contenido\", haz clic en \"Habilitar contenido\". Sin este paso, algunos cálculos automáticos no funcionarán. En Google Sheets esto no es necesario.\u003c/p>\n\u003cp>\u003cstrong>PASO 4 — Ingresa tus datos SOLO en las celdas azules\u003c/strong>\u003c/p>\n\u003cp>Todas las planillas usan el mismo código de color: \u003cstrong>celdas azul claro = tú escribes aquí | celdas gris claro = fórmulas, NO borrar\u003c/strong>. Cuando ingresas un dato y otro número cambia solo, el sistema está funcionando perfectamente.\u003c/p>\n\u003cp>\u003cstrong>PASO 5 — Personaliza una sola vez y listo\u003c/strong>\u003c/p>\n\u003cp>En cada planilla hay una pestaña \"⚙️ CONFIGURACIÓN\" donde defines: nombre de tu negocio, moneda local, umbrales de alertas (ej: stock mínimo, días de mora) y categorías propias. Configúrala una vez — todas las referencias en la planilla se actualizan automáticamente.\u003c/p>\n\u003cp>\u003cstrong>¿Algo no funciona como esperabas?\u003c/strong> Cada planilla incluye una pestaña \"❓ AYUDA\" con instrucciones paso a paso y capturas de pantalla para los pasos más comunes.\u003c/p>\n\u003chr>","icon":"rocket","cover":"linear-gradient(145deg,hsl(222 15% 36%),hsl(222 18% 27%))"},{"title":"Bônus do Front-End","html":"\u003cp>\u003cstrong>Bônus 1 — \"Panel del Jefe\" (12 dashboards ejecutivos visuales)\u003c/strong>\u003c/p>\n\u003cp>Vista de todos los KPIs críticos del negocio en una sola pantalla: ingresos, gastos, margen, stock en alerta, ventas por vendedor, cuentas por cobrar vencidas y gráficos de tendencia — actualizado automáticamente al ingresar datos en las planillas principales.\u003c/p>\n\u003cp>\u003cem>Valor ancorado: R$47\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>Bônus 2 — \"Máquina de Ventas en Planilla\" (18 planillas de CRM y ventas)\u003c/strong>\u003c/p>\n\u003cp>Sistema completo de gestión comercial: embudo de ventas con probabilidades, seguimiento de prospectos, control de metas semanales, historial de clientes VIP y análisis de tasa de conversión — para vender más sin pagar un CRM caro.\u003c/p>\n\u003cp>\u003cem>Valor ancorado: R$37\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>Bônus 3 — \"Control Personal Total\" (15 planillas de finanzas personales)\u003c/strong>\u003c/p>\n\u003cp>Presupuesto mensual, control de deudas con cronograma de pago, metas financieras con barra de progreso, portafolio de inversiones y simulador de retiro — para que el dueño del negocio también organice su dinero personal con la misma claridad.\u003c/p>\n\u003cp>\u003cem>Valor ancorado: R$27\u003c/em>\u003c/p>\n\u003cp>\u003cstrong>Bônus 4 — \"Guía Inicio Rápido en Video\" (7 tutoriales de 5 minutos)\u003c/strong>\u003c/p>\n\u003cp>Screencasts con narración paso a paso mostrando las planillas más usadas en acción: Flujo de Caja, Registro de Ventas, Control de Stock, Pipeline CRM, Presupuesto Personal, Dashboard Ejecutivo y Configuración Inicial. Incluye timestamps por sección para ir directo al punto que necesitas.\u003c/p>\n\u003cp>\u003cem>Valor ancorado: R$97\u003c/em>\u003c/p>\n\u003chr>","icon":"package","cover":"linear-gradient(145deg,hsl(222 15% 27%),hsl(222 18% 18%))"},{"title":"Tu escalera de productos","html":"\u003cp class=\"lead\">Todo lo que incluye esta oferta — del producto de entrada al último upsell. Esta es la máquina de ventas completa que es tuya.\u003c/p>\u003cdiv class=\"ladder\">\u003cdiv class=\"lad-tier core\">\u003cspan class=\"lad-badge core\">Principal\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Kit Maestro de Planillas — Control Total de tu Negocio en 15 Minutos al Día\u003c/span>\u003cspan class=\"lad-d\">+ 4 bonos incluidos\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$17\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Bono incluido\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Panel del Jefe (12 dashboards ejecutivos)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">\u003cs>$47\u003c/s>$0\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Bono incluido\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Máquina de Ventas en Planilla (18 planillas CRM)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">\u003cs>$37\u003c/s>$0\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Bono incluido\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Control Personal Total (15 planillas personales)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">\u003cs>$27\u003c/s>$0\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Bono incluido\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Guía Inicio Rápido en Video (7 tutoriales)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">\u003cs>$97\u003c/s>$0\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Order bumps (en el checkout)\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Kit Tienda y Comercio (18 planillas retail)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$17\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Order bumps (en el checkout)\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Kit Prestador de Servicios (15 planillas freelance)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$17\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Order bumps (en el checkout)\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Kit Inversiones y Patrimonio (12 planillas)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$17\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Order bumps (en el checkout)\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Versión Google Sheets (acceso online)\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$9\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge bump\">Combo\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Colección Completa: Negocio + Servicios + Inversiones\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">\u003cs>$51\u003c/s>$27\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge up\">Upsell\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Excel Maestro para Negocios: El Método Completo\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$67\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge down\">Downsell\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Las 5 Fórmulas que Todo Dueño de Negocio Necesita Saber\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$27\u003c/span>\u003c/div>\u003cdiv class=\"lad-tier\">\u003cspan class=\"lad-badge oto\">OTO final\u003c/span>\u003cspan class=\"lad-b\">\u003cspan class=\"lad-t\">Club de Planillas — Nuevas Planillas Cada Mes + Comunidad de Gestores\u003c/span>\u003c/span>\u003cspan class=\"lad-price\">$47\u003c/span>\u003c/div>\u003c/div>\u003cdiv class=\"lad-note\">💡 Cada nivel de arriba ya está construido para ti — producto, página y creativos. Actívalos a medida que escalas.\u003c/div>","icon":"rocket","cover":"linear-gradient(145deg,hsl(222 15% 27%),hsl(222 18% 18%))"}]};
-var SLUG=(DATA.title||'x').toLowerCase().replace(/[^a-z0-9]+/g,'-');
-var T={"home":"Inicio","modules":"Módulos","save":"Guardar","of":" de ","done":"completados","unlocked":"Tu acceso está desbloqueado","completed":"Completado","module":"Módulo ","previous":"Anterior","cont":"Completar y seguir →","finish":"Completar ✓"};
-var KEY='entrega:'+SLUG,seen=load(),cur=-1;
-function load(){try{return new Set(JSON.parse(localStorage.getItem(KEY)||'[]'))}catch(e){return new Set()}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(Array.from(seen)))}catch(e){}}
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function el(i){return document.getElementById(i)}
-var ICONS={book:'<path d="M4 5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1-2-2V5z"/><path d="M9 3v18"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/>',package:'<path d="M21 8 12 3 3 8v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>',image:'<rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="9" r="1.7"/><path d="M21 15l-5-4-9 7"/>',chart:'<path d="M4 4v16h16"/><path d="M8 16v-4"/><path d="M13 16V8"/><path d="M18 16v-7"/>',bulb:'<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/>',rocket:'<path d="M14 4c3 0 6 3 6 6 0 1-3 5-7 8l-4-4c3-4 4-7 5-10z"/><path d="M9 14l-4 1 1-4"/>',users:'<circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-6 7-6s7 2.1 7 6"/><path d="M16 4a4 4 0 0 1 0 8"/>',check:'<path d="M5 12l4.5 4.5L19 7"/>',home:'<path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/>',list:'<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1.1"/><circle cx="3.5" cy="12" r="1.1"/><circle cx="3.5" cy="18" r="1.1"/>',download:'<path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/>'};
-function ic(n){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[n]||ICONS.book)+'</svg>'}
-function drawer(o){el('app').classList[o?'add':'remove']('open')}
-function bnav(a){var t=[['home',T.home,'home()'],['list',T.modules,'drawer(true)'],['download',T.save,'window.print()']],h='';for(var i=0;i<t.length;i++){h+='<button class="bnav-i'+(a===i?' active':'')+'" onclick="'+t[i][2]+'">'+ic(t[i][0])+'<span>'+t[i][1]+'</span></button>'}el('bnav').innerHTML=h}
-function side(){var n=DATA.modules.length,d=seen.size;el('pf').style.width=(n?Math.round(d/n*100):0)+'%';el('pt').textContent=d+T.of+n+' '+T.modules.toLowerCase()+' '+T.done;var h='';for(var i=0;i<n;i++){var m=DATA.modules[i];h+='<button class="mod-item'+(cur===i?' active':'')+(seen.has(i)?' done':'')+'" onclick="go('+i+')"><span class="mod-ic">'+ic(m.icon)+'</span><span class="mod-t">'+esc(m.title)+'</span>'+(seen.has(i)?'<span class="mod-ck">'+ic('check')+'</span>':'')+'</button>'}el('mods').innerHTML=h}
-function home(){cur=-1;var h='<header class="hero"><span class="eyebrow">'+T.unlocked+'</span><h1>'+esc(DATA.title)+'</h1>';if(DATA.intro)h+='<div class="lead">'+DATA.intro+'</div>';h+='</header><div class="grid">';for(var i=0;i<DATA.modules.length;i++){var m=DATA.modules[i];h+='<button class="mcard'+(seen.has(i)?' mcard-done':'')+'" onclick="go('+i+')"><span class="cover" style="background:'+m.cover+'"><span class="cover-n">'+(i+1)+'</span><span class="cover-ic">'+ic(m.icon)+'</span>'+(seen.has(i)?'<span class="cover-done">'+ic('check')+'</span>':'')+'</span><span class="mcard-b"><span class="mcard-t">'+esc(m.title)+'</span><span class="mcard-s">'+(seen.has(i)?T.completed:T.module+(i+1))+'</span></span></button>'}h+='</div>';el('content').innerHTML=h;el('tbt').textContent=DATA.title;side();bnav(0);window.scrollTo(0,0)}
-function go(i){cur=i;var m=DATA.modules[i];var h='<button class="btn" onclick="home()" style="margin-bottom:18px">\u2190 '+T.home+'</button><div class="m-eyebrow">'+T.module+(i+1)+T.of+DATA.modules.length+'</div><h1 class="m-title">'+esc(m.title)+'</h1><div class="prose">'+m.html+'</div><div class="navrow">';if(i>0)h+='<button class="btn" onclick="go('+(i-1)+')">\u2190 '+T.previous+'</button>';h+='<button class="btn btn-pri" onclick="done('+i+')">'+(i<DATA.modules.length-1?T.cont:T.finish)+'</button></div>';el('content').innerHTML=h;el('tbt').textContent=m.title;drawer(false);side();bnav(1);window.scrollTo(0,0)}
-function done(i){seen.add(i);save();if(i<DATA.modules.length-1)go(i+1);else home()}
-home();
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on')},4200)}
+document.querySelectorAll('.pl-acts').forEach(function(g){
+  var file=g.getAttribute('data-file');
+  var url=new URL(file,location.href).href;   // absoluto correto seja qual for a pasta
+  g.querySelector('[data-act=excel]').addEventListener('click',function(){
+    // Office URI: abre o arquivo direto no Excel do desktop (se instalado)
+    window.location.href='ms-excel:ofe|u|'+url;
+    setTimeout(function(){toast('Abriendo en Excel… si no abre, usa ⬇ Descargar y ábrelo con doble clic.')},400);
+  });
+  g.querySelector('[data-act=sheets]').addEventListener('click',function(){
+    // Sheets no importa una URL en 1 clic: descargamos el .xlsx y abrimos Sheets para subirlo
+    var a=document.createElement('a');a.href=file;a.download='';document.body.appendChild(a);a.click();a.remove();
+    window.open('https://sheets.new','_blank');
+    toast('Descargado. En Google Sheets: Archivo › Importar › Subir › elige el .xlsx.');
+  });
+});
 </script>
 </body></html>
